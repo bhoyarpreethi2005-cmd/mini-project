@@ -1,0 +1,44 @@
+# Hybrid AI-driven Traffic Energy Harvesting Simulation
+# With Solar Energy included
+
+def piezoelectric_energy(vehicles, pressure_factor=0.5):
+    return vehicles * pressure_factor * 2.5  # Joules per vehicle
+
+def electromagnetic_energy(vehicles, coil_factor=0.8):
+    return vehicles * coil_factor * 3.0  # Joules per vehicle
+
+def triboelectric_energy(vehicles, friction_factor=0.6):
+    return vehicles * friction_factor * 1.8  # Joules per vehicle
+
+def thermoelectric_energy(vehicles, heat_factor=0.4):
+    return vehicles * heat_factor * 2.2  # Joules per vehicle
+
+def solar_energy(vehicles, sunlight_intensity=1.0, panel_efficiency=0.2):
+    # Assume each vehicle corresponds to a unit area exposed to sunlight
+    return vehicles * sunlight_intensity * panel_efficiency * 5.0  # Joules per vehicle
+
+def hybrid_energy(vehicles, sunlight_intensity):
+    piezo = piezoelectric_energy(vehicles)
+    em = electromagnetic_energy(vehicles)
+    tribo = triboelectric_energy(vehicles)
+    thermo = thermoelectric_energy(vehicles)
+    solar = solar_energy(vehicles, sunlight_intensity)
+    
+    total = piezo + em + tribo + thermo + solar
+    return piezo, em, tribo, thermo, solar, total
+
+# --- User Input ---
+vehicles = int(input("Enter number of vehicles passing: "))
+sunlight_intensity = float(input("Enter sunlight intensity (0.0 - 1.0): "))
+
+# --- Energy Calculation ---
+piezo, em, tribo, thermo, solar, total = hybrid_energy(vehicles, sunlight_intensity)
+
+# --- Output ---
+print("\n--- Energy Harvesting Results ---")
+print(f"Piezoelectric Energy: {piezo:.2f} J")
+print(f"Electromagnetic Energy: {em:.2f} J")
+print(f"Triboelectric Energy: {tribo:.2f} J")
+print(f"Thermoelectric Energy: {thermo:.2f} J")
+print(f"Solar Energy: {solar:.2f} J")
+print(f"Total Hybrid Energy: {total:.2f} J")
