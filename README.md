@@ -1,4 +1,4 @@
-# mini-project
+# project
 <br>
 Author:Bhoyar Preethi
 <br>
